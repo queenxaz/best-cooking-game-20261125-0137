@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Golden Ladle — Rush Hour Kitchen</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand"><span class="ladle">🥄</span><div><div class="title">THE GOLDEN LADLE</div><div class="subtitle">Rush Hour Kitchen</div></div></div>
+    <div class="stat"><span class="stat-label">SHIFT TIMER</span><span id="timer" class="stat-value">3:00</span></div>
+    <div class="stat"><span class="stat-label">COINS</span><span id="coins" class="stat-value">🪙 0</span></div>
+    <div class="stat"><span class="stat-label">SERVED</span><span id="served" class="stat-value">0</span></div>
+    <div class="stat"><span class="stat-label">COMBO</span><span id="combo" class="stat-value">×1</span></div>
+    <div class="stat target"><span class="stat-label">TARGET</span><span id="target" class="stat-value">150 🪙</span></div>
+    <div class="topbtns">
+      <button id="btn-sound" title="Mute (M)">🔊</button>
+      <button id="btn-pause" title="Pause (P)">⏸</button>
+      <button id="btn-restart" title="Restart (R)">↻</button>
+    </div>
+  </header>
+
+  <section id="orders" aria-label="Order board">
+    <div class="board-label">📋 ORDER BOARD</div>
+    <div id="tickets"></div>
+  </section>
+
+  <main id="kitchen">
+    <section id="counter" aria-label="Ingredients on the counter">
+      <h2>🥕 INGREDIENT COUNTER <span class="hint">click a bin, or press 1–9</span></h2>
+      <div id="bins"></div>
+      <div id="hand-row">
+        <div id="hand" class="hand-empty"><span class="hand-label">IN HAND</span><span id="hand-item">—</span></div>
+        <button id="btn-trash" title="Throw away what you are holding">🗑 Trash</button>
+      </div>
+    </section>
+
+    <section id="stations" aria-label="Workstations">
+      <h2>🍳 WORKSTATIONS</h2>
+      <div class="station-row">
+        <div id="board" class="station" title="Chopping board — click to chop (3×)">
+          <div class="station-name">🔪 CHOPPING BOARD</div>
+          <div id="board-slot" class="slot empty">empty</div>
+          <div id="board-progress" class="progress"><div class="bar"></div></div>
+          <div class="station-hint">needs: lettuce · tomato · cucumber · mushroom</div>
+        </div>
+        <div id="stove" class="station" title="Stove — click a pan to cook or collect">
+          <div class="station-name">🔥 STOVE</div>
+          <div class="pans">
+            <div class="pan" data-pan="0"><div class="pan-food">·</div><div class="pan-progress"><div class="bar"></div></div><div class="pan-label">PAN 1</div></div>
+            <div class="pan" data-pan="1"><div class="pan-food">·</div><div class="pan-progress"><div class="bar"></div></div><div class="pan-label">PAN 2</div></div>
+          </div>
+          <div class="station-hint">needs: pasta · patty · egg — don't let it burn!</div>
+        </div>
+      </div>
+      <div class="station-row">
+        <div id="plate" class="station plate-station" title="Plate — click with an ingredient in hand to add it">
+          <div class="station-name">🍽️ PLATE — BUILD THE DISH HERE</div>
+          <div id="plate-dish"><div class="plate-circle"><span id="plate-items">Empty plate</span></div></div>
+          <div id="plate-match" class="plate-match">Add ingredients to match an order…</div>
+          <button id="btn-clear-plate">Clear plate</button>
+        </div>
+      </div>
+    </section>
+
+    <aside id="serve-side" aria-label="Serve window">
+      <h2>🔔 SERVE WINDOW</h2>
+      <div id="serve-window">
+        <div id="bell" class="bell">🔔</div>
+        <div id="serve-status">No dish ready</div>
+        <button id="btn-serve">SERVE DISH&nbsp;&nbsp;(Space)</button>
+        <div id="serve-hint">Plate must match an open order.</div>
+      </div>
+      <div id="combo-box">
+        <div class="combo-title">⭐ STREAK</div>
+        <div id="streak">Serve dishes quickly to grow your tip multiplier!</div>
+      </div>
+      <div id="log"></div>
+    </aside>
+  </main>
+
+  <footer id="helpbar">
+    <span><b>Click</b> bins → board / stove → plate → bell to serve.</span>
+    <span><b>1–9</b> grab ingredient · <b>Space</b> serve · <b>P</b> pause · <b>R</b> restart · <b>M</b> mute</span>
+  </footer>
+
+  <div id="overlay" class="show">
+    <div id="overlay-card">
+      <div class="ov-emoji">🥄</div>
+      <h1>THE GOLDEN LADLE</h1>
+      <p class="ov-sub">Rush Hour Kitchen — you are the only cook on shift!</p>
+      <p>Orders roll in on the board. Grab ingredients, <b>chop</b> them on the board,
+      <b>cook</b> them on the stove, <b>build</b> the dish on the plate and ring the
+      <b>bell</b> to serve — before patience runs out.</p>
+      <div class="menu">
+        <div><span>🥗</span><b>Garden Salad</b><i>lettuce + tomato + cucumber (all chopped)</i></div>
+        <div><span>🍝</span><b>Tomato Pasta</b><i>pasta (cooked) + tomato (chopped) + cheese</i></div>
+        <div><span>🍔</span><b>Sizzling Burger</b><i>bun + patty (cooked) + lettuce (chopped)</i></div>
+        <div><span>🍳</span><b>Mushroom Omelette</b><i>egg (cooked) + mushroom (chopped) + cheese</i></div>
+      </div>
+      <p class="ov-target">🎯 Earn <b>150 🪙</b> in 3 minutes to win the shift. Fast serves grow your combo tip!</p>
+      <button id="btn-start">▶ START SHIFT</button>
+      <p class="ov-keys">Mouse + keyboard · works fully offline · original game</p>
+    </div>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
